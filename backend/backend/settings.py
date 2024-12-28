@@ -185,9 +185,9 @@ JAZZMIN_SETTINGS = {
     "site_title": "jsthlmn",
     "site_header": "JustHilman",
     "site_brand": "jsthlmn Blog Admin Panel ",
-    # "site_icon": "images/favicon.ico",
-    # "site_logo": "images/logos/logo.jpg",
-    "welcome_sign": "Welcome To jsthlmn Blog",
+    # "site_icon": "media/favicon-logo.png",
+    # "site_logo": "media/logo.png",
+    "welcome_sign": "Welcome To jsthlmn Blog Admin Panel",
     "copyright": "jsthlmn",
     "user_avatar": "images/photos/logo.jpg",
     "topmenu_links": [
