@@ -15,6 +15,9 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    def __str__(self):
+        return self.username
+
     def save(self, *args, **kwargs):
         email_username, mobile = self.email.split("@")
         if self.full_name == "" or self.full_name == None:
@@ -22,3 +25,24 @@ class User(AbstractUser):
         if self.username == "" or self.username == None:
             self.username = email_username
         super(User, self).save(*args, **kwargs)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.FileField(upload_to="image", default="default/default-user.jpg", null=True, blank=True)
+    full_name = models.CharField(max_length=100, null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
+    about = models.TextField(null=True, blank=True)
+    author = models.BooleanField(default=False)
+    country = models.CharField(max_length=100, null=True, blank=True)
+    facebook = models.CharField(max_length=100, null=True, blank=True)
+    twitter = models.CharField(max_length=100, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username
+
+    def save(self, *args, **kwargs):
+        if self.full_name == "" or self.full_name == None:
+            self.full_name = self.user.full_name
+        super(Profile, self).save(*args, **kwargs)
